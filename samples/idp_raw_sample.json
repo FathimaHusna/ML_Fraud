@@ -1,0 +1,22 @@
+{
+  "modelVersion": "2023-10-31",
+  "createdDateTime": "2025-01-01T12:00:00Z",
+  "documents": [
+    {
+      "docType": "idDocument.driverLicense",
+      "fields": {
+        "FirstName": {"valueString": "JANE", "confidence": 0.99, "boundingRegions": [{"pageNumber": 1, "polygon": [0.1, 0.1, 0.4, 0.1, 0.4, 0.15, 0.1, 0.15]}]},
+        "LastName": {"valueString": "DOE", "confidence": 0.99, "boundingRegions": [{"pageNumber": 1, "polygon": [0.42, 0.1, 0.7, 0.1, 0.7, 0.15, 0.42, 0.15]}]},
+        "FullName": {"valueString": "JANE DOE", "confidence": 0.99, "boundingRegions": [{"pageNumber": 1, "polygon": [0.1, 0.18, 0.7, 0.18, 0.7, 0.22, 0.1, 0.22]}]},
+        "DateOfBirth": {"valueDate": "1995-05-10", "confidence": 0.98, "boundingRegions": [{"pageNumber": 1, "polygon": [0.1, 0.25, 0.3, 0.25, 0.3, 0.29, 0.1, 0.29]}]},
+        "DocumentNumber": {"valueString": "D1234567", "confidence": 0.97, "boundingRegions": [{"pageNumber": 1, "polygon": [0.1, 0.32, 0.35, 0.32, 0.35, 0.36, 0.1, 0.36]}]},
+        "CountryRegion": {"valueString": "US", "confidence": 0.9, "boundingRegions": [{"pageNumber": 1, "polygon": [0.1, 0.39, 0.2, 0.39, 0.2, 0.42, 0.1, 0.42]}]},
+        "Nationality": {"valueString": "USA", "confidence": 0.85, "boundingRegions": [{"pageNumber": 1, "polygon": [0.22, 0.39, 0.35, 0.39, 0.35, 0.42, 0.22, 0.42]}]},
+        "DateOfIssue": {"valueDate": "2023-01-01", "confidence": 0.96, "boundingRegions": [{"pageNumber": 1, "polygon": [0.1, 0.45, 0.3, 0.45, 0.3, 0.49, 0.1, 0.49]}]},
+        "DateOfExpiration": {"valueDate": "2030-01-01", "confidence": 0.96, "boundingRegions": [{"pageNumber": 1, "polygon": [0.32, 0.45, 0.55, 0.45, 0.55, 0.49, 0.32, 0.49]}]},
+        "MachineReadableZoneLine2": {"valueString": "1234567890<<<<9505102F3001012<<<<<<<<<<<<<<<", "confidence": 0.7, "boundingRegions": [{"pageNumber": 1, "polygon": [0.1, 0.8, 0.9, 0.8, 0.9, 0.86, 0.1, 0.86]}]}
+      }
+    }
+  ]
+}
+

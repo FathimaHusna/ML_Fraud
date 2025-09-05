@@ -1,0 +1,161 @@
+{
+  "submissionId": "demo-001",
+  "docType": "idDocument.driverLicense",
+  "modelVersion": "2023-10-31",
+  "captureTs": "2025-01-01T12:00:00Z",
+  "firstName": "JANE",
+  "lastName": "DOE",
+  "fullName": "JANE DOE",
+  "dob": "1995-05-10",
+  "docNumber": "D1234567",
+  "nationality": "USA",
+  "countryRegion": "US",
+  "issueDate": "2023-01-01",
+  "expiryDate": "2030-01-01",
+  "mrzLine1": null,
+  "mrzLine2": "1234567890<<<<9505102F3001012<<<<<<<<<<<<<<<",
+  "confidences": {
+    "FirstName": 0.99,
+    "LastName": 0.99,
+    "FullName": 0.99,
+    "DateOfBirth": 0.98,
+    "DocumentNumber": 0.97,
+    "CountryRegion": 0.9,
+    "Nationality": 0.85,
+    "DateOfIssue": 0.96,
+    "DateOfExpiration": 0.96,
+    "MachineReadableZoneLine2": 0.7
+  },
+  "boxes": {
+    "FirstName": {
+      "page": 1,
+      "polygon": [
+        0.1,
+        0.1,
+        0.4,
+        0.1,
+        0.4,
+        0.15,
+        0.1,
+        0.15
+      ]
+    },
+    "LastName": {
+      "page": 1,
+      "polygon": [
+        0.42,
+        0.1,
+        0.7,
+        0.1,
+        0.7,
+        0.15,
+        0.42,
+        0.15
+      ]
+    },
+    "FullName": {
+      "page": 1,
+      "polygon": [
+        0.1,
+        0.18,
+        0.7,
+        0.18,
+        0.7,
+        0.22,
+        0.1,
+        0.22
+      ]
+    },
+    "DateOfBirth": {
+      "page": 1,
+      "polygon": [
+        0.1,
+        0.25,
+        0.3,
+        0.25,
+        0.3,
+        0.29,
+        0.1,
+        0.29
+      ]
+    },
+    "DocumentNumber": {
+      "page": 1,
+      "polygon": [
+        0.1,
+        0.32,
+        0.35,
+        0.32,
+        0.35,
+        0.36,
+        0.1,
+        0.36
+      ]
+    },
+    "CountryRegion": {
+      "page": 1,
+      "polygon": [
+        0.1,
+        0.39,
+        0.2,
+        0.39,
+        0.2,
+        0.42,
+        0.1,
+        0.42
+      ]
+    },
+    "Nationality": {
+      "page": 1,
+      "polygon": [
+        0.22,
+        0.39,
+        0.35,
+        0.39,
+        0.35,
+        0.42,
+        0.22,
+        0.42
+      ]
+    },
+    "DateOfIssue": {
+      "page": 1,
+      "polygon": [
+        0.1,
+        0.45,
+        0.3,
+        0.45,
+        0.3,
+        0.49,
+        0.1,
+        0.49
+      ]
+    },
+    "DateOfExpiration": {
+      "page": 1,
+      "polygon": [
+        0.32,
+        0.45,
+        0.55,
+        0.45,
+        0.55,
+        0.49,
+        0.32,
+        0.49
+      ]
+    },
+    "MachineReadableZoneLine2": {
+      "page": 1,
+      "polygon": [
+        0.1,
+        0.8,
+        0.9,
+        0.8,
+        0.9,
+        0.86,
+        0.1,
+        0.86
+      ]
+    }
+  }
+}
