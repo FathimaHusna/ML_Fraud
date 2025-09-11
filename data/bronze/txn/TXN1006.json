@@ -1,0 +1,20 @@
+{
+  "transactionId": "TXN1006",
+  "userId": "user_456",
+  "payeeId": "pay-999",
+  "merchantId": null,
+  "merchantCategory": null,
+  "amount": 95000.0,
+  "timestamp": "2025-09-11T23:55:00Z",
+  "channel": "web",
+  "device_id": null,
+  "device_type": null,
+  "device_os": null,
+  "ip": null,
+  "city": "Matara",
+  "region": "Southern",
+  "country": "LK",
+  "lat": null,
+  "lon": null,
+  "is_fraud": 1
+}

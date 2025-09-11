@@ -1,35 +1,59 @@
-ML_Fraud – Data Ingestion (KYC ID Authenticity)
+ML_Fraud – E‑Payments Fraud (Sri Lanka GovPay)
 
 Contents
-- ingestion/: DI client, normalization, storage adapters
-- functions/: Decoupled Event Grid consumer (IDP bronze → silver)
-- notebooks/: Experimental ingestion notebook
-- samples/: Small DI output sample for offline runs
+- ingestion/: Storage adapters, settings, and transaction schema (silver)
+- features/: Transaction feature engineering
+- synthetic/: Transaction synthetic data generator + labels
+- CLIs: `run_txn_ingest.py`, `run_txn_features.py`, `run_txn_synth.py`
 
 Quickstart
-- Local (no Azure):
-  1) `pip install -r requirements.txt`
-  2) `python ML_Fraud/run_ingest.py --submission-id demo-001 --use-sample`
-  3) Inspect outputs under `ML_Fraud/data/bronze` and `ML_Fraud/data/silver`
+- Install deps: `pip install -r requirements.txt`
 
-- Orchestrated (single service; optional)
-  1) Create a Document Intelligence resource and set `DI_ENDPOINT`.
-  2) Choose storage auth:
-     - Connection string: set `AZURE_STORAGE_CONNECTION_STRING` and `STORAGE_MODE=adls` (enables SAS generation).
-     - Or Account URL + Managed Identity: set `STORAGE_ACCOUNT_URL` and `STORAGE_MODE=adls` (pre-create SAS or allow public read for DI).
-  3) Set `STORAGE_CONTAINER` (default `mlfraud`). Ensure container exists.
-  4) Upload and ingest:
-     - `python ML_Fraud/run_ingest.py --submission-id cloud-001 --upload-path /path/to/id.jpg`
-     - The script uploads to `incoming/<submissionId>/<file>` and calls DI with the SAS/public URL.
-  5) Bronze/Silver are written to either local or ADLS depending on `STORAGE_MODE`.
+Next steps: Features and Synthetic Data
+- Compute features from existing txn silver JSONs:
+  - `python ML_Fraud/run_txn_features.py --silver-dir ML_Fraud/data/silver/txn --out ML_Fraud/data/gold/txn_features.csv`
+- Generate a synthetic transaction set:
+  - `python ML_Fraud/run_txn_synth.py --users 300 --days 45 --avg-per-user 80 --fraud 0.25 --out-features ML_Fraud/data/gold/txn_synth_features.csv --out-records ML_Fraud/data/silver/txn_synth_records.json`
 
-- Decoupled (recommended if separate modules)
-  - Assuming the IDP module stores bronze and emits an event with `bronzeUrl` or `bronzePath`:
-    - CLI consume bronze directly (no DI call):
-      - From URL: `python ML_Fraud/run_ingest.py --submission-id abc-123 --idp-bronze-path "https://<acct>.blob.core.windows.net/<container>/idp/bronze/.../abc-123.json?<sas>"`
-      - From container path (with MI): `python ML_Fraud/run_ingest.py --submission-id abc-123 --idp-bronze-path idp/bronze/2025/01/01/abc-123.json`
-    - Azure Function consumer (Event Grid): deploy `functions/idp_output_consumer` and subscribe to `idp.output.created`.
-      The function downloads bronze, normalizes to silver, and can be extended to compute features/scores.
+Notes
+- Transaction features include time, channel, velocity windows (60s/5m/1h/1d), novelty flags, and 30‑day amount z‑scores.
+- Synthetic labels mark odd‑hour + location/device anomalies, velocity bursts, and new‑payee/device high‑amount spikes.
+- ADLS uploads are optional via `--to-adls` flags (requires `STORAGE_MODE=adls`).
 
-- Notebook:
-  - Open `ML_Fraud/notebooks/01_ingestion_experiment.ipynb` and run cells
+—
+
+e‑Payments Fraud (Sri Lanka GovPay) – Transaction Pipeline
+
+Overview
+- Aligns with the product document: hybrid ML with transaction, device/location, behavior, and velocity features.
+- Adds a parallel transaction pipeline: ingestion → silver → feature engineering → model training.
+
+Modules
+- ingestion/txn_schema.py: Defines raw and normalized transaction schemas.
+- run_txn_ingest.py: Ingests transactions from CSV/JSON into bronze/silver (`data/bronze/txn`, `data/silver/txn`).
+- features/txn_features.py: Builds per‑transaction features (amount z‑scores, time, channel, velocity counts/sums, device/payee/city novelty, 30‑day stats).
+- run_txn_features.py: CLI to compute features from silver and optionally upload to ADLS.
+- synthetic/txn_generate.py: Generates realistic transaction streams and fraud patterns.
+- run_txn_synth.py: CLI to generate synthetic txn features and records; supports ADLS upload.
+
+Quickstart (Transactions)
+- Ingest sample CSV (headers must at least include transactionId,userId,amount,timestamp; optional: channel,deviceId,payeeId,city,is_fraud):
+  - `python ML_Fraud/run_txn_ingest.py --input-csv path/to/txns.csv --prefix txn`
+  - Outputs per‑txn JSON under `ML_Fraud/data/bronze/txn/` and `ML_Fraud/data/silver/txn/`.
+- Build features from silver:
+  - `python ML_Fraud/run_txn_features.py --silver-dir ML_Fraud/data/silver/txn --out ML_Fraud/data/gold/txn_features.csv`
+- Generate synthetic dataset for prototyping:
+  - `python ML_Fraud/run_txn_synth.py --users 300 --days 45 --avg-per-user 80 --fraud 0.25 --out-features ML_Fraud/data/gold/txn_synth_features.csv --out-records ML_Fraud/data/silver/txn_synth_records.json`
+
+Feature Highlights
+- Real‑time signals: time‑of‑day, day‑of‑week, is_night, channel encoding.
+- Velocity: counts and sums over 60s/5m/1h/1d per user.
+- Behavioral: device/payee/city novelty flags (first‑seen), amount z‑score over prior 30 days.
+- Designed to combine with a supervised classifier (e.g., XGBoost) and an anomaly detector.
+
+ADLS Integration
+- All new CLIs accept `--to-adls` (features/synth) and reuse existing storage routing for uploads.
+
+
+
+https://chatgpt.com/c/68c162a5-e304-8332-9a5d-874c8882c334

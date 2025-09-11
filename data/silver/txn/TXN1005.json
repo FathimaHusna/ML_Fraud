@@ -1,0 +1,20 @@
+{
+  "transactionId": "TXN1005",
+  "userId": "user_456",
+  "payeeId": "pay-444",
+  "merchantId": null,
+  "merchantCategory": null,
+  "amount": 1800.0,
+  "timestamp": "2025-09-11T11:10:00Z",
+  "channel": "mobile",
+  "deviceId": null,
+  "deviceType": null,
+  "deviceOs": null,
+  "ip": null,
+  "city": "Kandy",
+  "region": "Central",
+  "country": "LK",
+  "lat": null,
+  "lon": null,
+  "is_fraud": 0
+}

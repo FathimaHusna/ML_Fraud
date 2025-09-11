@@ -42,3 +42,21 @@ def storage_route_write_json(settings: Settings, subdir: str, name: str, obj: An
     else:
         path = write_json_local(settings.data_root, subdir, name, obj)
         return str(path)
+
+
+def storage_route_write_bytes(settings: Settings, subdir: str, name: str, data: bytes, content_type: str) -> str:
+    """Write arbitrary bytes to local or ADLS. Returns local path or blob URL.
+
+    For local, writes to `data_root/subdir/name`; caller should include extension in name.
+    For ADLS, writes to `<container>/<subdir>/<name>`.
+    """
+    if settings.storage_mode == "adls":
+        helper = BlobHelper(settings)
+        blob_path = f"{subdir}/{name}"
+        return helper.write_bytes(settings.storage_container, blob_path, data, content_type)
+    else:
+        out_dir = settings.data_root / subdir
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out_path = out_dir / name
+        out_path.write_bytes(data)
+        return str(out_path)

@@ -1,0 +1,20 @@
+{
+  "transactionId": "TXN1004",
+  "userId": "user_123",
+  "payeeId": "pay-222",
+  "merchantId": null,
+  "merchantCategory": null,
+  "amount": 1000.0,
+  "timestamp": "2025-09-10T02:20:00Z",
+  "channel": "mobile",
+  "deviceId": null,
+  "deviceType": null,
+  "deviceOs": null,
+  "ip": null,
+  "city": "Jaffna",
+  "region": "Northern",
+  "country": "LK",
+  "lat": null,
+  "lon": null,
+  "is_fraud": 1
+}

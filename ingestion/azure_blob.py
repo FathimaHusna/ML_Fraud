@@ -54,6 +54,11 @@ class BlobHelper:
         bc.upload_blob(data, overwrite=True, content_type="application/json; charset=utf-8")
         return bc.url
 
+    def write_bytes(self, container: str, blob_path: str, data: bytes, content_type: str = "application/octet-stream") -> str:
+        bc: BlobClient = self.svc.get_blob_client(container=container, blob=blob_path)
+        bc.upload_blob(data, overwrite=True, content_type=content_type)
+        return bc.url
+
     def generate_sas_url(self, container: str, blob_path: str, ttl_minutes: int) -> Optional[str]:
         if not generate_blob_sas or not BlobSasPermissions:
             return None

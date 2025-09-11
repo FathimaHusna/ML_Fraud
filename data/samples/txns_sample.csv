@@ -1,0 +1,9 @@
+transactionId,userId,amount,timestamp,channel,deviceId,payeeId,city,region,country,is_fraud
+TXN1001,user_123,2500,2025-09-10T14:05:00Z,web,dev-123,pay-111,Colombo,Western,LK,0
+TXN1002,user_123,5000,2025-09-10T02:10:00Z,mobile,dev-999,pay-222,Jaffna,Northern,LK,1
+TXN1003,user_987,45000,2025-09-10T15:30:00Z,web,dev-777,pay-333,Colombo,Western,LK,0
+TXN1004,user_123,1000,2025-09-10T02:20:00Z,mobile,dev-999,pay-222,Jaffna,Northern,LK,1
+TXN1005,user_456,1800,2025-09-11T11:10:00Z,mobile,dev-456,pay-444,Kandy,Central,LK,0
+TXN1006,user_456,95000,2025-09-11T23:55:00Z,web,dev-456-new,pay-999,Matara,Southern,LK,1
+TXN1007,user_987,2200,2025-09-12T09:05:00Z,ussd,dev-777,pay-555,Colombo,Western,LK,0
+TXN1008,user_987,2300,2025-09-12T09:06:00Z,ussd,dev-777,pay-555,Colombo,Western,LK,0

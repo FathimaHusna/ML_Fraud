@@ -1,0 +1,20 @@
+{
+  "transactionId": "TXN1007",
+  "userId": "user_987",
+  "payeeId": "pay-555",
+  "merchantId": null,
+  "merchantCategory": null,
+  "amount": 2200.0,
+  "timestamp": "2025-09-12T09:05:00Z",
+  "channel": "ussd",
+  "deviceId": null,
+  "deviceType": null,
+  "deviceOs": null,
+  "ip": null,
+  "city": "Colombo",
+  "region": "Western",
+  "country": "LK",
+  "lat": null,
+  "lon": null,
+  "is_fraud": 0
+}
