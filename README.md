@@ -6,6 +6,20 @@ Contents
 - synthetic/: Transaction synthetic data generator + labels
 - CLIs: `run_txn_ingest.py`, `run_txn_features.py`, `run_txn_synth.py`
 
+Documentation
+- docs/overview.md – high‑level purpose, repo map, key CLIs
+- docs/pipeline.md – bronze/silver/gold pipeline and storage modes
+- docs/synthetic.md – synthetic generators, config, validation
+- docs/features.md – engineered features and design rationale
+- docs/training.md – baseline/ensemble training, artifacts, registry
+- docs/model_selection.md – metrics, thresholding, champion–challenger
+- docs/validation.md – synthetic dataset checks and usage
+- docs/serving_deploy.md – service endpoints, configs, deployment paths
+- docs/docker_deploy.md – minimal Docker/Compose steps
+- docs/mlops.md – experiments (MLflow), AutoML, retraining
+- docs/statistics.md – core statistical concepts in this project
+- docs/faq.md – quick questions and typical commands
+
 Quickstart
 - Install deps: `pip install -r requirements.txt`
 
@@ -35,6 +49,11 @@ Modules
 - run_txn_features.py: CLI to compute features from silver and optionally upload to ADLS.
 - synthetic/txn_generate.py: Generates realistic transaction streams and fraud patterns.
 - run_txn_synth.py: CLI to generate synthetic txn features and records; supports ADLS upload.
+
+Synthetic Generators
+- Builtin (default): pattern injections with optional complexity flag inside `synthetic/txn_generate.py`.
+- Simple (configurable): seasonality + rules. See `docs/synthetic_simple_generator.md`.
+  - Example: `python ML_Fraud/run_txn_synth.py --generator simple --config ML_Fraud/configs/synth.yaml`
 
 Quickstart (Transactions)
 - Ingest sample CSV (headers must at least include transactionId,userId,amount,timestamp; optional: channel,deviceId,payeeId,city,is_fraud):

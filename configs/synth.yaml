@@ -1,0 +1,31 @@
+# Simple rule-based generator configuration
+
+generator: simple
+
+base:
+  # Target fraction of events to label as fraud
+  fraud_rate: 0.095
+
+seasonality:
+  daily_amp: 0.3
+  weekly_amp: 0.2
+
+patterns:
+  velocity_burst:
+    prob: 0.002
+    burst_lambda: 4
+    window_s: 120
+  new_payee_high_amt:
+    prob: 0.004
+    z_min: 2.5
+    multiplier_min: 5.0
+    multiplier_max: 12.0
+  odd_hour_new_city:
+    prob: 0.004
+    night_end_hour: 4
+  # Added: micro-amount burst pattern (card testing)
+  card_testing:
+    prob: 0.001
+    n_min: 4
+    n_max: 10
+    window_s: 60

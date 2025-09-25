@@ -1,3 +1,61 @@
 .venv/
 .env
+.env.*
+*.env
 __pycache__/
+
+# Python caches & build
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.pytype/
+.ruff_cache/
+.cache/
+*.egg-info/
+.eggs/
+build/
+dist/
+.coverage
+coverage.xml
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Editors/IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Data artifacts (keep repo light)
+# Comment out any you want to version
+data/bronze/
+data/silver/
+data/reports/
+data/gold/
+ML_Fraud/data/gold/
+ML_Fraud/data/silver/
+ML_Fraud/data/bronze/
+ML_Fraud/data/reports/
+ML_Fraud/data/models/
+
+data/models/
+data/silver/
+
+data/gold/*scored*.csv
+
+# ML experiment tracking (optional)
+mlruns/
+
+# Optional: large model binaries (uncomment if not versioning models)
+# data/models/*.pkl
+# data/models/*.onnx
+
+data/gold/txn_synth_features.csv
+
+data/silver/txn_synth_records.json

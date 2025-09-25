@@ -21,6 +21,11 @@ def main() -> None:
     parser.add_argument("--to-adls", action="store_true")
     parser.add_argument("--adls-features-path", default=None)
     parser.add_argument("--adls-records-path", default=None)
+    # Generator selection and config
+    parser.add_argument("--generator", choices=["builtin", "simple"], default="builtin",
+                        help="Which synthetic generator to use: builtin (current patterns) or simple (configurable rule-based)")
+    parser.add_argument("--config", default=None,
+                        help="Optional YAML config path for generator parameters (used by --generator simple)")
     args = parser.parse_args()
 
     # Allow --out-records to be a directory; default file name inside it
@@ -40,6 +45,8 @@ def main() -> None:
         seed=args.seed,
         out_features=Path(args.out_features).resolve(),
         out_records=out_records_path,
+        generator=args.generator,
+        config_path=Path(args.config).resolve() if args.config else None,
     )
     feat_df, rec_df, outp = run_and_save(cfg)
     print(f"Wrote txn synthetic features (local): {outp} ({len(feat_df)} rows)")

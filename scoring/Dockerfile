@@ -17,9 +17,9 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
 
 EXPOSE 8000
 
-ENV MODEL_PATH=models/baseline_xgb.pkl \
-    FEATURES_JSON=models/baseline_xgb.features.json \
-    STORAGE_MODE=adls
+ENV PYTHONPATH=/app/ML_Fraud \
+    STORAGE_MODE=local \
+    MODEL_PATH=ML_Fraud/data/models/stack_v1.pkl \
+    FEATURES_JSON=ML_Fraud/data/models/stack_v1.features.json
 
 CMD ["uvicorn", "ML_Fraud.scoring.service:app", "--host", "0.0.0.0", "--port", "8000"]
-
